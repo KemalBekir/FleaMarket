@@ -2,7 +2,7 @@
 
 FleaMarket is an app for listing your unwanted items.
 
-##Current Status
+## Current Status
 -in progress..
 
 
