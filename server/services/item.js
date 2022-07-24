@@ -50,7 +50,8 @@ async function deleteById(id) {
 async function searchFunction(text) {
   console.log("----> Services", text);
   return Item.find({
-    $or: [{ name: { $regex: `${text}` } }, { location: { $regex: `${text}` } }],
+    $or: [{ name: {$regex: `${text}`, $options: 'i'}}, { location: {$regex: `${text}`, $options: 'i'}}]
+    /*{$or: [{ name: {$regex: 'london', $options: 'i'}}, { location: {$regex: 'london', $options: 'i'}}]}*/
   });
 }
 

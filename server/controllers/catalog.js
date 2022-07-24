@@ -15,6 +15,19 @@ router.get("/top5", async (req, res) => {
   res.json(data);
 });
 
+router.get("/search", async (req, res) => {
+  console.log('---> Controller',req.query, res);
+  const { text } = req.query;
+  try {
+    const result = await api.searchFunction(text);
+    res.json(result);
+  } catch (err) {
+    const error = mapErrors(err);
+    console.error(err.message);
+    res.status(400).json({ message: error });
+  }
+});
+
 router.get("/myAds", isAuth(), async (req, res) => {
   const data = await api.getAllAdsByOwner(req.user._id);
   res.json(data);
@@ -80,16 +93,5 @@ router.delete("/:id", preload(), isOwner(), async (req, res) => {
   }
 });
 
-router.get("/search", async (req, res) => {
-  console.log('---> Controller',req.query.text);
-  try {
-    const result = await api.searchFunction(req.query.text);
-    res.json(result);
-  } catch (err) {
-    const error = mapErrors(err);
-    console.error(err.message);
-    res.status(400).json({ message: error });
-  }
-});
 
 module.exports = router;

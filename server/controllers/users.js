@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { application } = require('express');
 const { isGuest, isAuth, isOwner } = require('../middleware/guards');
 const { register, login, logout, getProfile, updateProfileInfo } = require('../services/users');
 const mapErrors = require('../utils/mappers');
