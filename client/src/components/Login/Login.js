@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Register from "../Register/Register";
 import { useState } from "react";
-import { loginUser } from "../../api/User";
+import { loginUser } from "../../api/UserService";
 
 const Login = () => {
   const [email, setEmail] = useState("");
