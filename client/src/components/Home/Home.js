@@ -1,9 +1,26 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import * as CatalogService from "../../services/catalogService";
+import CatalogItem from "../CatalogItem/CatalogItem";
+import "./Home.css";
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  const [items, setItems] = useState([]);
 
-export default Home
+  useEffect(() => {
+    CatalogService.getTopFive().then((result) => {
+      setItems(result);
+    });
+  }, []);
+
+  return (
+    <div className="top-item-container">
+      <ul className="catalog-list">
+        {items.map((x) => (
+          <CatalogItem key={x._id} item={x} />
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Home;

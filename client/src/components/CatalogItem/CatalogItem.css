@@ -1,0 +1,14 @@
+li {
+    list-style: none;
+    width: 30%;
+}
+.image-container {
+    width: 30%;
+    margin: 0;
+}
+
+.image-container img {
+    object-fit: contain;
+    height: 30%;
+    width: 100%;
+}

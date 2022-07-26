@@ -5,7 +5,8 @@ import Catalog from "./components/Catalog/Catalog";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Home from "./components/Home/Home";
-import Profile from "./components/Catalog/Profile/Profile";
+import Profile from "./components/Profile/Profile";
+import Create from "./components/Create/Create";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/create" element={<Create />} />
         </Routes>
       </main>
     </div>

@@ -25,8 +25,20 @@ const Register = () => {
           placeholder="Enter your Password"
           required
         ></input>
+        <label>Repeat-Password:</label>
+        <input
+          type="rePass"
+          name="rePass"
+          placeholder="Repeat your Password"
+          required
+        ></input>
         <label htmlFor="tel">Tel:</label>
-        <input type="number" name="tel" placeholder="tel" defaultValue={''}></input>
+        <input
+          type="number"
+          name="tel"
+          placeholder="tel"
+          defaultValue={""}
+        ></input>
       </form>
     </section>
   );

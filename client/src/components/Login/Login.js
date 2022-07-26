@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Register from "../Register/Register";
 import { useState } from "react";
-import { loginUser } from "../../api/UserService";
+import { loginUser } from "../../services/userService";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -36,7 +35,7 @@ const Login = () => {
         <button>Login</button>
         <p>Don`t have an account? </p>
         <Link style={{ textDecoration: "none" }} to="/register">
-          <Register />
+          Register
         </Link>
       </form>
     </section>
