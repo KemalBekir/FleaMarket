@@ -1,11 +1,6 @@
-.top-item-container {
-    width: 90%;
-    margin: 0 auto;
-}
-
-.catalog-list {
+.home-list-container {
     display: flex;
     flex-direction: row;
-    width: 90%;
-    margin: 0 auto;
+    justify-content: space-around;
+    width: 100%;
 }

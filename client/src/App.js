@@ -10,7 +10,7 @@ import Create from "./components/Create/Create";
 
 function App() {
   return (
-    <div id="container">
+    <div id="body-container">
       <Navbar />
 
       <main id="site-content">

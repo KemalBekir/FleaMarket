@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as CatalogService from "../../services/catalogService";
-import CatalogItem from "../CatalogItem/CatalogItem";
+import { HomeCard } from "../HomeCard/HomeCard";
 import "./Home.css";
 
 const Home = () => {
@@ -13,13 +13,16 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="top-item-container">
-      <ul className="catalog-list">
+    <section className="home-section">
+      <div className="home-hero">
+        <h1>Flea Market </h1>
+      </div>
+      <div className="home-list-container">
         {items.map((x) => (
-          <CatalogItem key={x._id} item={x} />
+          <HomeCard key={x._id} item={x} />
         ))}
-      </ul>
-    </div>
+      </div>
+    </section>
   );
 };
 

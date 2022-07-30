@@ -3,15 +3,15 @@ import "./CatalogItem.css";
 
 const CatalogItem = ({ item }) => {
   return (
-    <li>
-      <div className="image-container">
-        <img className="image" src={item.img} alt="" />
+      <div className="home-list-item-container">
+        <div className="home-card">
+          <img className="home-card-img" src={item.img} alt="" />
+        </div>
+        <h5>{item.name}</h5>
+        <p>{item.description}</p>
+        <p>{item.updatedAt}</p>
+        <Link to={`/details/${item._id}`}>Details</Link>
       </div>
-      <h5>{item.name}</h5>
-      <p>{item.description}</p>
-      <p>{item.updatedAt}</p>
-      <Link to={`/details/${item._id}`}>Details</Link>
-    </li>
   );
 };
 
