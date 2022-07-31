@@ -21,7 +21,7 @@ const Login = () => {
     <section className="login-section">
       <h3 className="login-title">Login</h3>
       <form className="login-form" type="submit" onSubmit={handleSubmit}>
-        <label>Email</label>
+        <label>Email:</label>
         <input
           type="email"
           name="email"
@@ -29,7 +29,7 @@ const Login = () => {
           placeholder="example@gmail.com"
           onChange={(e) => setEmail(e.target.value)}
         ></input>
-        <label>Password</label>
+        <label>Password:</label>
         <input
           type="password"
           name="password"
