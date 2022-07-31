@@ -15,8 +15,10 @@ const Home = () => {
   return (
     <section className="home-section">
       <div className="home-hero">
-        <h1>Flea Market </h1>
+        <h1 className="home-hero-title">Welcome</h1>
+        <p className="home-hero-desc">Bring your unused items back to life.</p>
       </div>
+        <h2 className="home-list-title" alt="Latest listings">Latest Listings</h2>
       <div className="home-list-container">
         {items.map((x) => (
           <HomeCard key={x._id} item={x} />

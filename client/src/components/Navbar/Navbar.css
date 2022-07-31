@@ -6,9 +6,10 @@
     height: 10vh;
 }
 
-/* .nav .main-logo {
-    display: flex;
-} */
+.main-logo {
+    color: white;
+    font-size: 2.5rem;
+}
 
 .nav ul {
     display: flex;
@@ -18,5 +19,6 @@
 }
 
 .nav ul li {
-    padding-right: 1.3rem;
+    padding-right: 2rem;
+    font-size: 2rem;
 }

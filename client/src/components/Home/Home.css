@@ -4,3 +4,39 @@
     justify-content: space-around;
     width: 100%;
 }
+
+.home-list-title {
+    width: 100%;
+    margin-bottom: 3rem;
+    font-size: 3rem;
+    color: white;
+}
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 30vh;
+  border-bottom: 2px solid white;
+  margin-bottom: 3rem;
+}
+
+.home-hero-img {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  height: 30vh;
+  object-fit: contain;
+  opacity: 0.7;
+}
+
+.home-hero-title {
+  font-size: 5rem;
+  color: white;
+  padding-bottom: 2rem;
+}
+
+
+.home-hero-desc {
+    font-size: 2rem;
+    color: white;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../../services/userService";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,11 +19,13 @@ const Login = () => {
 
   return (
     <section className="login-section">
-      <form type="submit" onSubmit={handleSubmit}>
+      <h3 className="login-title">Login</h3>
+      <form className="login-form" type="submit" onSubmit={handleSubmit}>
         <label>Email</label>
         <input
           type="email"
           name="email"
+          className="login-email"
           placeholder="example@gmail.com"
           onChange={(e) => setEmail(e.target.value)}
         ></input>
@@ -30,11 +33,13 @@ const Login = () => {
         <input
           type="password"
           name="password"
+          placeholder="Password"
+          className="login-pas"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button>Login</button>
-        <p>Don`t have an account? </p>
-        <Link style={{ textDecoration: "none" }} to="/register">
+        <button className="login-btn">Login</button>
+        <p className="login-text">Don`t have an account? </p>
+        <Link className="login-link" to="/register">
           Register
         </Link>
       </form>
