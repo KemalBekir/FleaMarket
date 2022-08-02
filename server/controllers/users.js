@@ -18,6 +18,16 @@ router.post('/register', isGuest(), async (req, res) => {
     }
 });
 
+router.get('/profile', isAuth(), async (req,res) =>{
+    try{
+        const result = await getProfile(req.user);
+        res.status(200).json(result);
+    } catch (err) {
+        console.error(err);
+        const error = mapErrors(err);
+        res.status(400).json({ message: error});
+    }
+});
 router.post('/login', isGuest(),async (req, res) => {
     try {
         const result = await login(req.body.email.trim().toLowerCase(), req.body.password.trim());
@@ -29,16 +39,6 @@ router.post('/login', isGuest(),async (req, res) => {
     }
 });
 
-router.get('/profile', isAuth(), async (req,res) =>{
-    try{
-        const result = await getProfile(req.user);
-        res.status(200).json(result);
-    } catch (err) {
-        console.error(err);
-        const error = mapErrors(err);
-        res.status(400).json({ message: error});
-    }
-});
 
 router.put('/profile', isOwner(), async (req,res) => {
     const id = req.params.id;

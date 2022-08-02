@@ -12,17 +12,17 @@ export async function registerUser({ username, email, password, tel }) {
   return fetch("http://localhost:3030/users/register", {
     method: "POST",
     headers: {
-      "Conntent-Type": "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ username, email, password, tel }),
   }).then((data) => data.json());
 }
 
-export async function getProfile(_id, token) {
+export async function getProfile(token) {
   return fetch("http://localhost:3030/users/profile", {
     method: "GET",
     headers: {
-      "Conentent-Type": "application/json",
+      "Content-Type": "application/json",
       "X-Authorization": token,
     },
   }).then((data) => data.json());
