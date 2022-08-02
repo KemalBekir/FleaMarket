@@ -1,21 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../services/userService";
+import { AuthContext } from "../../contexts/authContext";
 import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await loginUser({
-      email,
-      password
-    });
-    localStorage.setItem('userData', JSON.stringify(token));
-  }
+    try {
+      const authData = await loginUser({
+        email,
+        password,
+      });
+      userLogin(authData);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className="login-section">

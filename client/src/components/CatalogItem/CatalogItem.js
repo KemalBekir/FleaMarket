@@ -3,9 +3,9 @@ import "./CatalogItem.css";
 
 const CatalogItem = ({ item }) => {
   return (
-      <div className="home-list-item-container">
-        <div className="home-card">
-          <img className="home-card-img" src={item.img} alt="" />
+      <div className="catalog-list-item-container">
+        <div className="catalog-card">
+          <img className="catalog-card-img" src={item.img} alt="" />
         </div>
         <h5>{item.name}</h5>
         <p>{item.description}</p>

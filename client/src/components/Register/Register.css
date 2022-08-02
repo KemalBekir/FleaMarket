@@ -57,6 +57,7 @@
   padding: 0.8rem;
   border-radius: 1rem;
   margin-bottom: 2.2rem;
+  cursor: pointer;
 }
 
 .register-text {

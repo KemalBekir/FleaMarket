@@ -47,7 +47,7 @@ const Register = () => {
           className="register-tel"
           defaultValue={""}
         ></input>
-        <button className="register-btn">Login</button>
+        <button className="register-btn">Register</button>
         <p className="register-text">Already have account? </p>
         <Link className="register-link" to="/login">
           Login

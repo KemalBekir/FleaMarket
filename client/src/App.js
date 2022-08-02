@@ -7,23 +7,26 @@ import Register from "./components/Register/Register";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
 import Create from "./components/Create/Create";
+import { AuthProvider } from "./contexts/authContext";
 
 function App() {
   return (
-    <div id="body-container">
-      <Navbar />
+    <AuthProvider>
+      <div id="body-container">
+        <Navbar />
 
-      <main id="site-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/create" element={<Create />} />
-        </Routes>
-      </main>
-    </div>
+        <main id="site-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/create" element={<Create />} />
+          </Routes>
+        </main>
+      </div>
+    </AuthProvider>
   );
 }
 

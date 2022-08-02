@@ -21,4 +21,15 @@
 .nav ul li {
     padding-right: 2rem;
     font-size: 2rem;
+    cursor: pointer;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+}
+
+.guest {
+    display: flex;
+    flex-direction: row;
 }
