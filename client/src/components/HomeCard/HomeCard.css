@@ -1,6 +1,8 @@
 .home-card-container {
   display: flex;
   flex-direction: column;
+  grid-area: card;
+
   width: calc((100% / 5) - 1.5rem);
   -webkit-box-shadow: 0px 8px 14px 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 8px 14px 5px rgba(0, 0, 0, 0.3);
@@ -11,6 +13,7 @@
 
 
 .home-card {
+  
   width: 95%;
   justify-content: center;
   margin: 0 auto;

@@ -1,0 +1,32 @@
+.profile-section {
+  width: 100%;
+  justify-content: center;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.profile-list-container {
+  display: flex;
+  grid-template-areas: "card card card card";
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+  width: 100%;
+  gap: 3rem;
+}
+
+.profile-title {
+    text-align: center;
+    width: 100%;
+    color: white;
+    font-size: 2.5rem;
+    border-bottom: 2px solid white;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}

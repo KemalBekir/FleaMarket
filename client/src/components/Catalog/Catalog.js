@@ -24,6 +24,7 @@ const Catalog = () => {
           <button className="catalog-search-btn">Search</button>
         </div> */}
       <div className="catalog-container">
+
         {isLoading ? (
           <Spinner />
         ) : (
