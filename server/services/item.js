@@ -14,7 +14,7 @@ async function getAllAdsByOwner(ownerId) {
 }
 
 function getById(id) {
-  return Item.findById(id).populate("owner");
+  return Item.findById(id).populate({ path: 'owner', select: ['email','username']});
 }
 
 async function create(item) {
