@@ -1,6 +1,9 @@
 .profile-section {
-  width: 100%;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .profile-container {
@@ -11,14 +14,9 @@
 
 .profile-list-container {
   display: flex;
-  grid-template-areas: "card card card card";
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 1rem;
-  width: 100%;
-  gap: 3rem;
+  justify-content: space-between;
 }
 
 .profile-title {

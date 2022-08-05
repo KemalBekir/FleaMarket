@@ -1,18 +1,47 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { useContext, useEffect, useState} from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { AuthContext } from '../../contexts/authContext'
+import * as catalogServices from '../../services/catalogService'
 import './Edit.css'
 
 const Edit = () => {
+  const [currentItem, setCurrentItem] = useState({});
+  const { itemId } = useParams();
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    catalogServices.getItemById(itemId)
+    .then(result => {
+      setCurrentItem(result);
+    })
+  },[]);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const itemData = Object.fromEntries(new FormData(e.target));
+    console.log(itemData);
+
+  catalogServices.editItem(itemId, itemData , user.accessToken)
+    .then(result => {
+      navigate(`/details/${itemId}`);
+    }).catch(err => {
+      console.error(err.message);
+    })
+  };
+
   return (
     <section className="edit-section">
       <h3 className="edit-title">Edit</h3>
-      <form className="edit-form">
+      <form className="edit-form" onSubmit={onSubmit}>
         <label htmlFor="name">Name/Model of item:</label>
         <input
           type="text"
           name="name"
           placeholder="Enter item name."
           className="edit-name"
+          defaultValue={currentItem.name}
           required
         ></input>
         <label htmlFor="description">Description:</label>
@@ -21,6 +50,7 @@ const Edit = () => {
           name="description"
           className="edit-desc"
           placeholder="Please enter description"
+          defaultValue={currentItem.description}
           required
         ></textarea>
         <label>Location:</label>
@@ -29,6 +59,7 @@ const Edit = () => {
           name="location"
           className="edit-location"
           placeholder="Please enter location."
+          defaultValue={currentItem.location}
           required
         ></input>
         <label>Telephone:</label>
@@ -37,23 +68,24 @@ const Edit = () => {
           name="tel"
           className="edit-tel"
           placeholder="Enter your Tel number"
-          defaultValue={""}
+          defaultValue={currentItem.tel}
         ></input>
-        <label htmlFor="tel">Price:</label>
+        <label htmlFor="price">Price:</label>
         <input
           type="number"
           name="price"
-          placeholder="Telephone Number"
+          placeholder="Price of your item"
           className="edit-price"
+          defaultValue={currentItem.price}
           min={0}
-          defaultValue={0}
         ></input>
-        <label htmlFor="tel">Image:</label>
+        <label htmlFor="image">Image:</label>
         <input
           type="text"
           name="img"
           placeholder="Link to image of the item"
           className="edit-image"
+          defaultValue={currentItem.img}
           required
         ></input>
         <div className="edit-btn-wrapper">

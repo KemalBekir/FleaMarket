@@ -18,6 +18,7 @@ export async function getTopFive() {
   }).then((data) => data.json());
 }
 
+
 export async function search(text) {
   return fetch(`${catalogUrl}/search`, {
     method: "GET",
@@ -46,13 +47,19 @@ export async function getItemById(itemId) {
   }).then((data) => data.json());
 }
 
-export async function editItem(itemId, { item }, token) {
+export async function createItem(item, token){
+  return fetch(`${catalogUrl}/`)
+}
+
+export async function editItem(itemId,  item , token) {
   return fetch(`${catalogUrl}/${itemId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       "X-Authorization": token,
     },
-    body: { item },
+    body: JSON.stringify(item),
   }).then(data => data.json());
 }
+
+

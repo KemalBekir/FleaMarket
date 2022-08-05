@@ -23,7 +23,7 @@ const Create = () => {
           placeholder="Please enter description"
           required
         ></textarea>
-        <label>Location:</label>
+        <label htmlFor="location">Location:</label>
         <input
           type="text"
           name="location"
@@ -39,16 +39,16 @@ const Create = () => {
           placeholder="Enter your Tel number"
           defaultValue={""}
         ></input>
-        <label htmlFor="tel">Price:</label>
+        <label htmlFor="price">Price:</label>
         <input
           type="number"
           name="price"
-          placeholder="Telephone Number"
+          placeholder="Price of your item"
           className="create-price"
           min={0}
           defaultValue={0}
         ></input>
-        <label htmlFor="tel">Image:</label>
+        <label htmlFor="img">Image:</label>
         <input
           type="text"
           name="img"

@@ -10,6 +10,7 @@ import Create from "./components/Create/Create";
 import { AuthProvider } from "./contexts/authContext";
 import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
+import Logout from "./components/Logout/Logout";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/details/:itemId" element={<Details/>} />
             <Route path="/details/:itemId/edit" element={<Edit/>} />
+            <Route path="/logout" element={<Logout/>}/>
             <Route path="/profile" element={<Profile />} />
             <Route path="/create" element={<Create />} />
           </Routes>

@@ -14,7 +14,7 @@
 
 .details-container {
   background-color: white;
-  width: 90%;
+  width: 95%;
   height: 80vh;
   display: flex;
   flex-wrap: wrap;
@@ -44,7 +44,7 @@
     /* height: 250px; */
 }
 .details-info-container {
-  width: 35%;
+  width: 40%;
   text-align: center;
   margin: 2rem 3rem;
 }
