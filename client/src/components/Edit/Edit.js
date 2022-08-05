@@ -15,13 +15,12 @@ const Edit = () => {
     .then(result => {
       setCurrentItem(result);
     })
-  },[]);
+  },[itemId]);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const itemData = Object.fromEntries(new FormData(e.target));
-    console.log(itemData);
 
   catalogServices.editItem(itemId, itemData , user.accessToken)
     .then(result => {

@@ -1,12 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useContext} from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
+import * as catalogServices from "../../services/catalogService";
+import Catalog from "../Catalog/Catalog";
 import "./Create.css";
 
 const Create = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const onSubmit = (e) => {
+    e.preventDefault(e);
+
+    const itemData = Object.fromEntries(new FormData(e.target));
+
+    catalogServices.createItem(itemData, user.accessToken)
+    .then(result => {
+      navigate('/catalog');
+    });
+  }
+
   return (
     <section className="create-section">
       <h3 className="create-title">Create</h3>
-      <form className="create-form">
+      <form className="create-form" onSubmit={onSubmit}>
         <label htmlFor="name">Name/Model of item:</label>
         <input
           type="text"

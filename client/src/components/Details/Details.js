@@ -34,10 +34,8 @@ const Details = () => {
             <h2 className="details-title">{item.name}</h2>
             <ul className="details-info-list">
               <li className="details-info-item">
-                <p>
-                  <span className="details-info-accent">Description: </span>
-                  {item.description}
-                </p>
+              <span className="details-info-accent">Description: </span>
+                <p>{item.description}</p>
               </li>
               <li className="details-info-item">
                 <p>
@@ -59,7 +57,12 @@ const Details = () => {
           </div>
           {user._id === item.owner._id ? (
             <div className="details-btn-wrapper">
-              <Link className="details-btn-edit" to={`/details/${item._id}/edit`}>Edit</Link>
+              <Link
+                className="details-btn-edit"
+                to={`/details/${item._id}/edit`}
+              >
+                Edit
+              </Link>
               <button className="details-btn-delete">Delete</button>
             </div>
           ) : (

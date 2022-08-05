@@ -61,10 +61,13 @@
 
 .details-info-item p {
     word-wrap: break-word;
+    line-height: 1.5;
+    font-weight: lighter;
 }
 
 .details-info-accent {
   font-weight: bold;
+  width: 100%;
 }
 
 .details-btn-wrapper {

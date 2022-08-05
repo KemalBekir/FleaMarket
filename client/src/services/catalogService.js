@@ -48,7 +48,14 @@ export async function getItemById(itemId) {
 }
 
 export async function createItem(item, token){
-  return fetch(`${catalogUrl}/`)
+  return fetch(`${catalogUrl}/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Authorization": token,
+    },
+    body: JSON.stringify(item),
+  }).then(data => data.json());
 }
 
 export async function editItem(itemId,  item , token) {
