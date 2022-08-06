@@ -21,21 +21,25 @@ const Home = () => {
         <h1 className="home-hero-title">Welcome</h1>
         <p className="home-hero-desc">Bring your unused items back to life.</p>
       </div>
+      {items.length !== 0
+        ? <h2 className="home-list-title" alt="Latest listings">
+          Latest Listings
+        </h2>
+        : <h2 className="home-list-title">There are currently no listings</h2>
 
-      <h2 className="home-list-title" alt="Latest listings">
-        Latest Listings
-      </h2>
+      }
 
       <div className="home-list-container">
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          <>
-            {items.map((x) => (
-              <HomeCard key={x._id} item={x} />
-            ))}
-          </>
-        )}
+        {
+          isLoading && items.length !== 0 ? (
+            <Spinner />
+          ) : (
+            <>
+              {items.map((x) => (
+                <HomeCard key={x._id} item={x} />
+              ))}
+            </>
+          )}
       </div>
     </section>
   );
