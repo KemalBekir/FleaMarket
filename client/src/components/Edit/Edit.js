@@ -15,7 +15,9 @@ const Edit = () => {
     .then(result => {
       setCurrentItem(result);
     })
-  },[itemId]);
+  },[]);
+
+  //TODO Add form validation
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -67,7 +69,7 @@ const Edit = () => {
           name="tel"
           className="edit-tel"
           placeholder="Enter your Tel number"
-          defaultValue={currentItem.tel}
+          value={currentItem.tel}
         ></input>
         <label htmlFor="price">Price:</label>
         <input

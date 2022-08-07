@@ -19,12 +19,11 @@ const Catalog = () => {
   }, []);
   return (
     <section className="catalog-section">
-      {/* <div className="catalog-search-container">
+      <div className="catalog-container">
+      <div className="catalog-search-container">
           <input className='catalog-search' placeholder='Search by Item name or Location' ></input>
           <button className="catalog-search-btn">Search</button>
-        </div> */}
-      <div className="catalog-container">
-
+        </div>
         {isLoading ? (
           <Spinner />
         ) : (

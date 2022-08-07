@@ -12,6 +12,8 @@ import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
 import Logout from "./components/Logout/Logout";
 
+//TODO handle notifications and server errors
+
 function App() {
   return (
     <AuthProvider>

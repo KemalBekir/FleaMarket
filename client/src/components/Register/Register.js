@@ -1,12 +1,50 @@
-import React from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
+import * as userService from "../../services/userService";
 import "./Register.css";
 
+//TODO add form validation
+
 const Register = () => {
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+    rePass: "",
+    tel: "",
+  });
+  const [errMsg, setErrMsg] = useState({
+    message: ''
+  })
+  const [isValid,setValid] = useState(true)
+
+  const { userLogin } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { username, email, password, rePass, tel } = Object.fromEntries(
+        new FormData(e.target));
+
+        if(password !== rePass){
+          setErrMsg('Passwords must match');
+          setValid(false);
+        }
+
+        userService.registerUser({username,email,password,tel}).then(result => {
+          console.log(result);
+        })
+
+    } catch (err) {
+      setErrMsg(err.message);
+    }
+  };
+
   return (
     <section className="register-section">
       <h3 className="register-title">Register</h3>
-      <form className="register-form">
+      <form className="register-form" onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -15,6 +53,7 @@ const Register = () => {
           className="register-user"
           required
         ></input>
+        {!isValid ? <p>{errMsg.message}</p> : null}
         <label htmlFor="email">Email:</label>
         <input
           type="email"
@@ -33,7 +72,7 @@ const Register = () => {
         ></input>
         <label>Repeat-Password:</label>
         <input
-          type="rePass"
+          type="password"
           name="rePass"
           className="register-pas"
           placeholder="Repeat your Password"

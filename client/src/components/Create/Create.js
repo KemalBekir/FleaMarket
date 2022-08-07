@@ -2,8 +2,9 @@ import { useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import * as catalogServices from "../../services/catalogService";
-import Catalog from "../Catalog/Catalog";
 import "./Create.css";
+
+//TODO add form validation
 
 const Create = () => {
   const { user } = useContext(AuthContext);

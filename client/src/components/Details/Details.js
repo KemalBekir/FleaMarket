@@ -11,6 +11,8 @@ const Details = () => {
   const { user } = useContext(AuthContext);
   const { itemId } = useParams();
 
+  //TODO Handle delete
+
   useEffect(() => {
     CatalogServices.getItemById(itemId).then((result) => {
       setItem(result);
@@ -44,13 +46,13 @@ const Details = () => {
                 </p>
               </li>
               <li className="details-info-item">
-                {item.price !== 0 ? (
+                {item.price  || item.price !== 0 ? (
                   <p>
                     <span className="details-info-accent">Price: </span>
                     {item.price}
                   </p>
                 ) : (
-                  <p>Price: Free</p>
+                  <p><span className="details-info-accent">Price: </span>Free</p>
                 )}
               </li>
             </ul>
