@@ -16,7 +16,6 @@ router.get("/top5", async (req, res) => {
 });
 
 router.get("/search", async (req, res) => {
-  console.log('---> Controller',req.query, res);
   const { text } = req.query;
   try {
     const result = await api.searchFunction(text);

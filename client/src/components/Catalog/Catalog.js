@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import * as catalogService from "../../services/catalogService";
 import { useState } from "react";
 import "./Catalog.css";
-// import CatalogItem from '../CatalogItem/CatalogItem';
 import { HomeCard } from "../HomeCard/HomeCard";
 import Spinner from "../Common/Spinner/Spinner";
 
@@ -17,13 +16,10 @@ const Catalog = () => {
       setLoading(false);
     });
   }, []);
+
   return (
     <section className="catalog-section">
       <div className="catalog-container">
-      <div className="catalog-search-container">
-          <input className='catalog-search' placeholder='Search by Item name or Location' ></input>
-          <button className="catalog-search-btn">Search</button>
-        </div>
         {isLoading ? (
           <Spinner />
         ) : (
@@ -32,7 +28,7 @@ const Catalog = () => {
             {items.length > 0 ? (
               items.map((x) => <HomeCard key={x._id} item={x} />)
             ) : (
-              <h3>No listings yet</h3>
+              <h3 style={{ color: "white" }}>No listings currently</h3>
             )}
           </>
         )}

@@ -18,14 +18,22 @@ const Navbar = () => {
             Home
           </Link>
         </li>
-            <li>
-              <Link
-                style={{ textDecoration: "none", color: "white" }}
-                to="/catalog"
-              >
-                Catalog
-              </Link>
-            </li>
+        <li>
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            to="/catalog"
+          >
+            Catalog
+          </Link>
+        </li>
+        <li>
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            to="/catalog/search"
+          >
+            Search
+          </Link>
+        </li>
         {user.email ? (
           <div className="user">
             <li>

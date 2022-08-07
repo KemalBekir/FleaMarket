@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import * as CatalogServices from "../../services/catalogService";
 import Spinner from "../Common/Spinner/Spinner";
@@ -10,8 +10,22 @@ const Details = () => {
   const [item, setItem] = useState({});
   const { user } = useContext(AuthContext);
   const { itemId } = useParams();
+  const navigate = useNavigate();
 
   //TODO Handle delete
+
+  const deleteHandler = (e) => {
+    e.preventDefault();
+    if(e.target.textContent == 'Delete'){
+     const confirm = window.confirm(`Are you sure you wante to delete this item ${item.name}`);
+     if(confirm){
+      CatalogServices.deleeteItem(itemId, user.accessToken).then( result => console.log(result));
+      navigate('/catalog');
+     } else {
+       navigate(`/details/${itemId}`);
+     }
+    }
+  }
 
   useEffect(() => {
     CatalogServices.getItemById(itemId).then((result) => {
@@ -65,7 +79,7 @@ const Details = () => {
               >
                 Edit
               </Link>
-              <button className="details-btn-delete">Delete</button>
+              <button onClick={deleteHandler} className="details-btn-delete">Delete</button>
             </div>
           ) : (
             ""

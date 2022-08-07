@@ -9,7 +9,7 @@ export const HomeCard = ({ item }) => {
       <div className="home-card-container">
         <img className="home-card-img" src={item.img} alt="" />
         <div className="home-card">
-          <h5 className="home-card-title">{item.name}</h5>
+          <h5 className="home-card-title">{item.name.length > 16 ? `${item.name.substring(0,16)}` : item.name}</h5>
           <p className="home-card-desc">{item.description.length > 15 ? item.description.substring(0, 10) : item.description}</p>
           <p className="home-card-date">
             <Moment format="MMMM Do YY, h:mm a">{item.updatedAt}</Moment>

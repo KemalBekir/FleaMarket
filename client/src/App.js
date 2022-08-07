@@ -11,6 +11,7 @@ import { AuthProvider } from "./contexts/authContext";
 import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
 import Logout from "./components/Logout/Logout";
+import Search from "./components/Search/Search";
 
 //TODO handle notifications and server errors
 
@@ -22,10 +23,12 @@ function App() {
 
         <main id="site-content">
           <Routes>
+            {/* TODO Router Guards */}
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/catalog" element={<Catalog />} />
+            <Route path="/catalog/search" element={<Search/>} />
             <Route path="/details/:itemId" element={<Details/>} />
             <Route path="/details/:itemId/edit" element={<Edit/>} />
             <Route path="/logout" element={<Logout/>}/>
