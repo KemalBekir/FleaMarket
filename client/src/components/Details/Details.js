@@ -12,8 +12,6 @@ const Details = () => {
   const { itemId } = useParams();
   const navigate = useNavigate();
 
-  //TODO Handle delete
-
   const deleteHandler = (e) => {
     e.preventDefault();
     if(e.target.textContent == 'Delete'){

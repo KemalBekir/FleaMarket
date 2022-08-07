@@ -90,7 +90,7 @@ const Edit = () => {
           required
         ></input>
         <div className="edit-btn-wrapper">
-          <Link className="edit-cancel" to="/catalog">
+          <Link className="edit-cancel" to={`/details/${currentItem._id}`}>
             Cancel
           </Link>
           <button className="edit-btn">Edit</button>

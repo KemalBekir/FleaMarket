@@ -12,6 +12,8 @@ import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
 import Logout from "./components/Logout/Logout";
 import Search from "./components/Search/Search";
+import PrivateRoute from "./components/Common/PrivateRoute";
+import OwnerRoute from "./components/Common/OwnerRoute";
 
 //TODO handle notifications and server errors
 
@@ -27,13 +29,17 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/details/:itemId" element={<Details />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/create" element={<Create />} />
+            </Route>
+            <Route element={<OwnerRoute />}>
+              <Route path="/details/:itemId/edit" element={<Edit />} />
+            </Route>
             <Route path="/catalog" element={<Catalog />} />
-            <Route path="/catalog/search" element={<Search/>} />
-            <Route path="/details/:itemId" element={<Details/>} />
-            <Route path="/details/:itemId/edit" element={<Edit/>} />
-            <Route path="/logout" element={<Logout/>}/>
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/create" element={<Create />} />
+            <Route path="/catalog/search" element={<Search />} />
           </Routes>
         </main>
       </div>

@@ -11,6 +11,7 @@
     flex-direction: row;
     justify-content: center;
     border-top-right-radius: 1rem;
+    background-color: white;
     align-items: center;
     width: 50%;
     height: 4.5rem;
