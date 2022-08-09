@@ -6,6 +6,8 @@ import { loginUser } from "../../services/userService";
 import { AuthContext } from "../../contexts/authContext";
 import "./Login.css";
 
+//TODO handle server errors
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

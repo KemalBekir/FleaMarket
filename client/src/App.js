@@ -25,11 +25,10 @@ function App() {
 
         <main id="site-content">
           <Routes>
-            {/* TODO Router Guards */}
             <Route path="/" element={<Home />} />
+            <Route path="/details/:itemId" element={<Details />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/details/:itemId" element={<Details />} />
             <Route element={<PrivateRoute />}>
               <Route path="/logout" element={<Logout />} />
               <Route path="/profile" element={<Profile />} />

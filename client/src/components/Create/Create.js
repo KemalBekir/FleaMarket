@@ -18,7 +18,7 @@ const Create = () => {
     catalogServices.createItem(itemData, user.accessToken)
     .then(result => {
       navigate('/catalog');
-    });
+    }).catch((err) => console.log(err));
   }
 
   return (
