@@ -14,6 +14,7 @@ export const AuthProvider = ({
     };
 
     const userLogout = () => {
+        localStorage.clear();
         setAuth({});
     };
 

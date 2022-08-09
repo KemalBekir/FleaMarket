@@ -18,7 +18,7 @@ const schema = new Schema(
       type: Number,
       default: 0,
     },
-    img: { type: String , rquired: [true, 'Image link is required'] },
+    img: { type: String },
     owner: { type: ObjectId, ref: "User" },
   },
   { timestamps: true }

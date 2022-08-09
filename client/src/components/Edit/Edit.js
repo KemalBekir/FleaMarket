@@ -1,10 +1,33 @@
 import { useContext, useEffect, useState} from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Formik, Form, Field } from "formik";
 import { AuthContext } from '../../contexts/authContext'
+import * as Yup from "yup";
 import * as catalogServices from '../../services/catalogService'
 import './Edit.css'
 
+const CreateSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(4, "Item name must contain atleast 4 characters")
+    .required("Item name is required"),
+  description: Yup.string(),
+  location: Yup.string()
+    .required("Location is required")
+    .min(4, "Location must be atleast 4 characters long"),
+  tel: Yup.string(),
+  price: Yup.number().default(0).min(0, "Price must be positive number"),
+  img: Yup.string(),
+});
+
 const Edit = () => {
+  const [item, setItem] = useState({
+    name: "",
+    description: "",
+    location: "",
+    tel: "",
+    price: 0,
+    img: "",
+  });
   const [currentItem, setCurrentItem] = useState({});
   const { itemId } = useParams();
   const { user } = useContext(AuthContext);

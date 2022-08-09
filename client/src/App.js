@@ -14,6 +14,7 @@ import Logout from "./components/Logout/Logout";
 import Search from "./components/Search/Search";
 import PrivateRoute from "./components/Common/PrivateRoute";
 import OwnerRoute from "./components/Common/OwnerRoute";
+import UnAuthRoute from "./components/Common/UnAuthRoute";
 
 //TODO handle notifications and server errors
 
@@ -27,8 +28,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/details/:itemId" element={<Details />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route element={<UnAuthRoute />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
             <Route element={<PrivateRoute />}>
               <Route path="/logout" element={<Logout />} />
               <Route path="/profile" element={<Profile />} />
