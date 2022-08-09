@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
-import { Formik, Form, Field, yupToFormErrors, ErrorMessage } from "formik";
+import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
 import * as userService from "../../services/userService";
 import "./Register.css";
@@ -49,9 +49,10 @@ const Register = () => {
     const { username, email, password, rePass, tel } = values;
     userService
       .registerUser({ username, email, password, tel })
-      .then((response) => {
-        console.log(response);
+      .then((authData) => {
+        userLogin(authData);
       }).catch((error) => setErrMsg(error.message));
+      
   };
 
   return (
