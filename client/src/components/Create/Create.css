@@ -70,6 +70,18 @@
   cursor: pointer;
 }
 
+.inactive {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  background-color: #5680e936;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  margin-bottom: 2.2rem;
+  width: 40%;
+}
+
 .create-btn-wrapper {
     display: flex;
     flex-direction: row;

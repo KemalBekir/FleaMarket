@@ -115,7 +115,7 @@ const Register = () => {
             <button
               type="submit"
               disabled={!(isValid && dirty)}
-              className="register-btn"
+              className={!(isValid && dirty) ? 'inactive-register' :'register-btn'}
             >
               Register
             </button>

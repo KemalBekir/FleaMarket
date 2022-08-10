@@ -67,12 +67,13 @@ const Create = () => {
               <p className="alert">{errors.name}</p>
             ) : null}
             <label htmlFor="description">Description:</label>
-            <textarea
+            <Field 
+              as="textarea"
               type="text"
               name="description"
               className="create-desc"
               placeholder="Please enter description"
-            ></textarea>
+            />
             <label htmlFor="location">Location:</label>
             <Field
               type="text"
@@ -114,7 +115,7 @@ const Create = () => {
               <button
                 disabled={!(isValid && dirty)}
                 type="submit"
-                className="create-btn"
+                className={!(isValid && dirty) ? 'inactive' : 'create-btn'}
               >
                 Create
               </button>

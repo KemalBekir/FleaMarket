@@ -134,7 +134,7 @@ const Edit = () => {
               <Link className="edit-cancel" to={`/details/${item._id}`}>
                 Cancel
               </Link>
-              <button disabled={!isValid && dirty} type="submit" className="edit-btn">
+              <button disabled={!isValid && dirty} type="submit" className={!(isValid) ? 'inactive' : 'edit-btn'}>
                 Edit
               </button>
             </div>
