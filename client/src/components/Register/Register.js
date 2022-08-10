@@ -1,7 +1,8 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
-import { Formik, Form, Field, } from "formik";
+import { Formik, Form, Field } from "formik";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 import * as userService from "../../services/userService";
 import "./Register.css";
@@ -50,9 +51,13 @@ const Register = () => {
     userService
       .registerUser({ username, email, password, tel })
       .then((authData) => {
-        userLogin(authData);
-      }).catch((error) => setErrMsg(error.message));
-      
+        if(authData.message){
+          toast.error(authData.message);
+        }else {
+          toast.success(`Welcome ${username}`);
+          userLogin(authData);
+        }
+      })
   };
 
   return (
@@ -115,7 +120,9 @@ const Register = () => {
             <button
               type="submit"
               disabled={!(isValid && dirty)}
-              className={!(isValid && dirty) ? 'inactive-register' :'register-btn'}
+              className={
+                !(isValid && dirty) ? "inactive-register" : "register-btn"
+              }
             >
               Register
             </button>

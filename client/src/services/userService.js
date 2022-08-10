@@ -15,7 +15,7 @@ export async function registerUser({ username, email, password, tel }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ username, email, password, tel }),
-  }).then((data) => data.json()).catch((error) => console.error(error));
+  }).then((data) => data.json());
 }
 
 export async function getProfile(token) {

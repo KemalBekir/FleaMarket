@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import { Formik, Form, Field } from "formik";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 import * as catalogServices from "../../services/catalogService";
 import "./Create.css";
@@ -41,9 +42,13 @@ const Create = () => {
     catalogServices
       .createItem(itemData, user.accessToken)
       .then((result) => {
-        navigate("/catalog");
+        if(result.message){
+          toast.error(result.message);
+        }else {
+          toast.success(`${itemData.name} was created successfully`);
+          navigate("/catalog");
+        }
       })
-      .catch((err) => console.log(err));
   };
 
   return (

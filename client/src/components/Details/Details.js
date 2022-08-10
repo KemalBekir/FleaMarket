@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import * as CatalogServices from "../../services/catalogService";
+import { toast } from "react-toastify";
 import Spinner from "../Common/Spinner/Spinner";
 import "./Details.css";
 
@@ -18,6 +19,7 @@ const Details = () => {
      const confirm = window.confirm(`Are you sure you wante to delete this item ${item.name}`);
      if(confirm){
       CatalogServices.deleeteItem(itemId, user.accessToken);
+      toast.success(`${item.name} successfully deleted`);
       navigate('/catalog');
      } else {
        navigate(`/details/${itemId}`);

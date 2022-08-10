@@ -16,6 +16,8 @@ import PrivateRoute from "./components/Common/PrivateRoute";
 import OwnerRoute from "./components/Common/OwnerRoute";
 import UnAuthRoute from "./components/Common/UnAuthRoute";
 import { ItemProvider } from "./contexts/itemContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //TODO handle notifications and server errors
 
@@ -26,6 +28,17 @@ function App() {
         <Navbar />
 
         <main id="site-content">
+          <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <ItemProvider>
             <Routes>
               <Route path="/" element={<Home />} />
