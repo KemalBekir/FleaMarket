@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import * as catalogServices from "../../services/catalogService";
 import "./Create.css";
 
-//TODO add form validation
 
 const CreateSchema = Yup.object().shape({
   name: Yup.string()
