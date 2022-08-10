@@ -15,7 +15,7 @@ const Catalog = () => {
       setItems(result);
       setLoading(false);
     });
-  }, []);
+  }, [items]);
 
   return (
     <section className="catalog-section">

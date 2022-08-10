@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState} from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { AuthContext } from '../../contexts/authContext'
+import { AuthContext } from "../../contexts/authContext";
 import * as Yup from "yup";
-import * as catalogServices from '../../services/catalogService'
-import './Edit.css'
+import * as catalogServices from "../../services/catalogService";
+import "./Edit.css";
 
 const CreateSchema = Yup.object().shape({
   name: Yup.string()
@@ -28,99 +28,185 @@ const Edit = () => {
     price: 0,
     img: "",
   });
-  const [currentItem, setCurrentItem] = useState({});
+  const [errMsg, setErrMsg] = useState({
+    message: "",
+  });
+  // const [currentItem, setCurrentItem] = useState({});
   const { itemId } = useParams();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    catalogServices.getItemById(itemId)
-    .then(result => {
-      setCurrentItem(result);
-    })
-  },[]);
+    catalogServices.getItemById(itemId).then((result) => {
+      setItem(result);
+    });
+  }, []);
 
   //TODO Add form validation
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    const itemData = Object.fromEntries(new FormData(e.target));
-
-  catalogServices.editItem(itemId, itemData , user.accessToken)
-    .then(result => {
-      navigate(`/details/${itemId}`);
-    }).catch(err => {
-      console.error(err.message);
-    })
+  const onSubmit = (values) => {
+    console.log(values.description);
+    const itemData = values;
+    console.log(values);
+    catalogServices
+      .editItem(itemId, itemData, user.accessToken)
+      .then((result) => {
+        navigate(`/details/${itemId}`);
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
   };
 
   return (
     <section className="edit-section">
       <h3 className="edit-title">Edit</h3>
-      <form className="edit-form" onSubmit={onSubmit}>
-        <label htmlFor="name">Name/Model of item:</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter item name."
-          className="edit-name"
-          defaultValue={currentItem.name}
-          required
-        ></input>
-        <label htmlFor="description">Description:</label>
-        <textarea
-          type="text"
-          name="description"
-          className="edit-desc"
-          placeholder="Please enter description"
-          defaultValue={currentItem.description}
-          required
-        ></textarea>
-        <label>Location:</label>
-        <input
-          type="text"
-          name="location"
-          className="edit-location"
-          placeholder="Please enter location."
-          defaultValue={currentItem.location}
-          required
-        ></input>
-        <label>Telephone:</label>
-        <input
-          type="number"
-          name="tel"
-          className="edit-tel"
-          placeholder="Enter your Tel number"
-          value={currentItem.tel}
-        ></input>
-        <label htmlFor="price">Price:</label>
-        <input
-          type="number"
-          name="price"
-          placeholder="Price of your item"
-          className="edit-price"
-          defaultValue={currentItem.price}
-          min={0}
-        ></input>
-        <label htmlFor="image">Image:</label>
-        <input
-          type="text"
-          name="img"
-          placeholder="Link to image of the item"
-          className="edit-image"
-          defaultValue={currentItem.img}
-          required
-        ></input>
-        <div className="edit-btn-wrapper">
-          <Link className="edit-cancel" to={`/details/${currentItem._id}`}>
-            Cancel
-          </Link>
-          <button className="edit-btn">Edit</button>
-        </div>
-      </form>
+      <Formik
+        initialValues={{
+          name: item.name || "",
+          description: item.description || "",
+          location: item.location || "",
+          tel: item.tel || "",
+          price: item.price || 0,
+          img: item.img || "",
+        }}
+        validationSchema={CreateSchema}
+        enableReinitialize={true}
+        onSubmit={onSubmit}
+      >
+        {({ values, errors, touched, isValid, dirty }) => (
+          <Form className="edit-form">
+            <label htmlFor="name">Name/Model of item:</label>
+            <Field
+              type="text"
+              name="name"
+              placeholder="Enter item name."
+              className="edit-name"
+            />
+            {errors.name && touched.name ? (
+              <p className="alert">{errors.name}</p>
+            ) : null}
+            <label htmlFor="description">Description:</label>
+            <Field as='textarea'
+              type="text"
+              name="description"
+              className="edit-desc"
+              placeholder="Please enter description"
+            ></Field>
+            {errors.description && touched.description ? (
+              <p className="alert">{errors.description}</p>
+            ) : null}
+            <label>Location:</label>
+            <Field
+              type="text"
+              name="location"
+              className="edit-location"
+              placeholder="Please enter location."
+            />
+            {errors.location && touched.location ? (
+              <p className="alert">{errors.location}</p>
+            ) : null}
+            <label>Telephone:</label>
+            <Field
+              type="number"
+              name="tel"
+              className="edit-tel"
+              placeholder="Enter your Tel number"
+            />
+            <label htmlFor="price">Price:</label>
+            <Field
+              type="number"
+              name="price"
+              placeholder="Price of your item"
+              className="edit-price"
+            />
+            {errors.price && touched.price ? (
+              <p className="alert">{errors.price}</p>
+            ) : null}
+            <label htmlFor="image">Image:</label>
+            <Field
+              type="text"
+              name="img"
+              placeholder="Link to image of the item"
+              className="edit-image"
+            />
+            <div className="edit-btn-wrapper">
+              <Link className="edit-cancel" to={`/details/${item._id}`}>
+                Cancel
+              </Link>
+              <button disabled={!isValid && dirty} type="submit" className="edit-btn">
+                Edit
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </section>
-  )
-}
+    // <section className="edit-section">
+    //   <h3 className="edit-title">Edit</h3>
+    //   <form className="edit-form" onSubmit={onSubmit}>
+    //     <label htmlFor="name">Name/Model of item:</label>
+    //     <Field
+    //       type="text"
+    //       name="name"
+    //       placeholder="Enter item name."
+    //       className="edit-name"
+    //       defaultValue={currentItem.name}
+    //       required
+    //     ></Field>
+    //     <label htmlFor="description">Description:</label>
+    //     <textarea
+    //       type="text"
+    //       name="description"
+    //       className="edit-desc"
+    //       placeholder="Please enter description"
+    //       defaultValue={currentItem.description}
+    //       required
+    //     ></textarea>
+    //     <label>Location:</label>
+    //     <Field
+    //       type="text"
+    //       name="location"
+    //       className="edit-location"
+    //       placeholder="Please enter location."
+    //       defaultValue={currentItem.location}
+    //       required
+    //     ></Field>
+    //     <label>Telephone:</label>
+    //     <Field
+    //       type="number"
+    //       name="tel"
+    //       className="edit-tel"
+    //       placeholder="Enter your Tel number"
+    //       value={currentItem.tel}
+    //     ></Field>
+    //     <label htmlFor="price">Price:</label>
+    //     <Field
+    //       type="number"
+    //       name="price"
+    //       placeholder="Price of your item"
+    //       className="edit-price"
+    //       defaultValue={currentItem.price}
+    //       min={0}
+    //     ></Field>
+    //     <label htmlFor="image">Image:</label>
+    //     <Field
+    //       type="text"
+    //       name="img"
+    //       placeholder="Link to image of the item"
+    //       className="edit-image"
+    //       defaultValue={currentItem.img}
+    //       required
+    //     ></Field>
+    //     <div className="edit-btn-wrapper">
+    //       <Link className="edit-cancel" to={`/details/${currentItem._id}`}>
+    //         Cancel
+    //       </Link>
+    //       <button className="edit-btn">Edit</button>
+    //     </div>
+    //   </form>
+    // </section>
+  );
+};
 
-export default Edit
+export default Edit;

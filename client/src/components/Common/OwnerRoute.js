@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Outlet, useParams, Navigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/authContext";
-import * as catalogServices from "../../services/catalogService";
+import { ItemContext } from "../../contexts/itemContext";
 
 const OwnerRoute = ({ children }) => {
+  const { selectItem } = useContext(ItemContext);
   const { user, isAuthenticated } = useAuthContext();
   const { itemId } = useParams();
-  const isEmpty = Object.keys(user).length === 0;
-  if(isEmpty){
-    return <Navigate to="/login" replace />;
-  }
-  const owner = user.myAds.includes(itemId);
 
-  if (!owner) {
+  const currentItem = selectItem(itemId);
+  
+  if (isAuthenticated && user._id !== currentItem.owner) {
     return <Navigate to="/catalog" replace />;
   } else if (!isAuthenticated) {
     return <Navigate to="/login" replace />;

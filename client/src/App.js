@@ -15,6 +15,7 @@ import Search from "./components/Search/Search";
 import PrivateRoute from "./components/Common/PrivateRoute";
 import OwnerRoute from "./components/Common/OwnerRoute";
 import UnAuthRoute from "./components/Common/UnAuthRoute";
+import { ItemProvider } from "./contexts/itemContext";
 
 //TODO handle notifications and server errors
 
@@ -25,24 +26,26 @@ function App() {
         <Navbar />
 
         <main id="site-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/details/:itemId" element={<Details />} />
-            <Route element={<UnAuthRoute />}>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </Route>
-            <Route element={<PrivateRoute />}>
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/create" element={<Create />} />
-            </Route>
-            <Route element={<OwnerRoute />}>
-              <Route path="/details/:itemId/edit" element={<Edit />} />
-            </Route>
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path="/catalog/search" element={<Search />} />
-          </Routes>
+          <ItemProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/details/:itemId" element={<Details />} />
+              <Route element={<UnAuthRoute />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+              </Route>
+              <Route element={<PrivateRoute />}>
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/create" element={<Create />} />
+              </Route>
+              <Route element={<OwnerRoute />}>
+                <Route path="/details/:itemId/edit" element={<Edit />} />
+              </Route>
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/catalog/search" element={<Search />} />
+            </Routes>
+          </ItemProvider>
         </main>
       </div>
     </AuthProvider>

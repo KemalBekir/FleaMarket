@@ -55,7 +55,6 @@ function createSession(user) {
       },
       JWT_SECRET
     ),
-    myAds: user.myAds
   };
 }
 

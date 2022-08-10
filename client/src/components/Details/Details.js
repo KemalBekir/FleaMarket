@@ -17,7 +17,7 @@ const Details = () => {
     if(e.target.textContent == 'Delete'){
      const confirm = window.confirm(`Are you sure you wante to delete this item ${item.name}`);
      if(confirm){
-      CatalogServices.deleeteItem(itemId, user.accessToken).then( result => console.log(result));
+      CatalogServices.deleeteItem(itemId, user.accessToken);
       navigate('/catalog');
      } else {
        navigate(`/details/${itemId}`);
