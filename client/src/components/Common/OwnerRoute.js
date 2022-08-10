@@ -9,14 +9,11 @@ const OwnerRoute = ({ children }) => {
   const { itemId } = useParams();
 
   const currentItem = selectItem(itemId);
-  setTimeout(() => {
-    if (isAuthenticated && user._id !== currentItem.owner) {
-      return <Navigate to="/catalog" replace />;
-    } else if (!isAuthenticated) {
-      return <Navigate to="/login" replace />;
-    }
-  }, 500);
-
+  if (isAuthenticated && user._id !== currentItem.owner) {
+    return <Navigate to="/catalog" replace />;
+  } else if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
   return children ? children : <Outlet />;
 };
 

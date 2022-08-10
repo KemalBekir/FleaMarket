@@ -10,7 +10,6 @@ export const ItemProvider = ({ children }) => {
 
   useEffect(() => {
     catalogService.getAll().then((result) => setItems(result));
-    console.log('repeat');
   }, []);
 
 
