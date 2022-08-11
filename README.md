@@ -57,7 +57,9 @@ Send an authorized ==**GET**== request to /users/profile. The service will retur
 *This request requires authorization and content-type headers. Only the owner of the resource can edit it.*
 Send an authorized ==**PUT**== request to /users/profile. 
 >Content-Type: application/json
+>
 >X-Authorization: {token}
+>
 >[Request body]
 ---
 ## CRUD
@@ -71,20 +73,26 @@ An end point is revealed at /data/catalog, which grants access to information, s
 #### Create
 *This request requires authorization and content-type headers*
 >Content-Type: application/json
+>
 >X-Authorization: {token}
+>
 >[Request body]
 - Send POST request to /data/catalog/ to create new entry. ID will be generated automatically and will be included in the returned object. If the collection does not exist, it will be created.
 
 #### Update 
 *This request requires authorization and content-type headers. Only the owner of the resource can edit it.*
 >Content-Type: application/json
+>
 >X-Authorization: {token}
+>
 >[Request body]
 - Send PUT request to /data/catalog/:id to update a single entry. Note that the existing entry will be replaced!
 
 #### Delete
 *This request requires authorization headers. Only the owner of the resource can delete it.*
 >Content-Type: application/json
+>
 >X-Authorization: {token}
+>
 >[Request body]
 - Send DELETE request to /data/catalog/:id to delete a single entry.
