@@ -41,7 +41,7 @@ npm start
 Login by sending a ==**POST**== request with email and password to /users/login. The service will respond with an object, containing a standard string token, that can be used for requests.
 
 #### Register
-Create a new user by sending a ==**POST**== request to /users/register with properties email and password. You can add any other property that you need, like username, avatar, etc. The service automatically creates a session and returns an authorization token, that can be used for requests.
+Create a new user by sending a ==**POST**== request to /users/register with properties username, email, password and tel as an optional property. The service automatically creates a session and returns an authorization token, that can be used for requests.
 
 #### Logout
 Send an authorized ==**GET**== request to /users/logout. The service returns an empty response - if you attempt to parse it as JSON, you will receive an error! You can check for this type of response by looking at the status (204 instead of 200) and the content-type header (will not be present).
