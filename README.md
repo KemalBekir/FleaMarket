@@ -38,24 +38,24 @@ npm start
 >baseUrl: http://localhost:3030
 
 #### Login
-Login by sending a ==**POST**== request with email and password to /users/login. The service will respond with an object, containing a standard string token, that can be used for requests.
+Login by sending a **POST** request with email and password to /users/login. The service will respond with an object, containing a standard string token, that can be used for requests.
 
 #### Register
-Create a new user by sending a ==**POST**== request to /users/register with properties username, email, password and tel as an optional property. The service automatically creates a session and returns an authorization token, that can be used for requests.
+Create a new user by sending a **POST** request to /users/register with properties username, email, password and tel as an optional property. The service automatically creates a session and returns an authorization token, that can be used for requests.
 
 #### Logout
-Send an authorized ==**GET**== request to /users/logout. The service returns an empty response - if you attempt to parse it as JSON, you will receive an error! You can check for this type of response by looking at the status (204 instead of 200) and the content-type header (will not be present).
+Send an authorized **GET** request to /users/logout. The service returns an empty response - if you attempt to parse it as JSON, you will receive an error! You can check for this type of response by looking at the status (204 instead of 200) and the content-type header (will not be present).
 
 #### Authorized Requests
 To make an authorized request, add the following header, where {token} is the access token, returned by the service upon successful login or registration:
 >X-Authorization: {token}
 
 #### Get User Details
-Send an authorized ==**GET**== request to /users/profile. The service will return the record of the user, associated with the passed-in session token.
+Send an authorized **GET** request to /users/profile. The service will return the record of the user, associated with the passed-in session token.
 
 #### Update User Details
 *This request requires authorization and content-type headers. Only the owner of the resource can edit it.*
-Send an authorized ==**PUT**== request to /users/profile. 
+Send an authorized **PUT** request to /users/profile. 
 >Content-Type: application/json
 >
 >X-Authorization: {token}
