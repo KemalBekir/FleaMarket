@@ -77,7 +77,7 @@ An end point is revealed at /data/catalog, which grants access to information, s
 >X-Authorization: {token}
 >
 >[Request body]
-- Send POST request to /data/catalog/ to create new entry. ID will be generated automatically and will be included in the returned object. If the collection does not exist, it will be created.
+- Send POST request to /data/catalog/ to create new entry. Request body must contain, name, description, location, tel(optional), price(optional - default value will be 0), img . ID will be generated automatically and will be included in the returned object. If the collection does not exist, it will be created.
 
 #### Update 
 *This request requires authorization and content-type headers. Only the owner of the resource can edit it.*
