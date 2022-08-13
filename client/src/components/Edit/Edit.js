@@ -46,9 +46,7 @@ const Edit = () => {
   //TODO Add form validation
 
   const onSubmit = (values) => {
-    console.log(values.description);
     const itemData = values;
-    console.log(values);
     catalogServices
       .editItem(itemId, itemData, user.accessToken)
       .then((result) => {
@@ -111,7 +109,7 @@ const Edit = () => {
             ) : null}
             <label>Telephone:</label>
             <Field
-              type="number"
+              type="text"
               name="tel"
               className="edit-tel"
               placeholder="Enter your Tel number"

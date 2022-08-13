@@ -18,6 +18,7 @@ const schema = new Schema(
       type: Number,
       default: 0,
     },
+    tel: { type: String },
     img: { type: String },
     owner: { type: ObjectId, ref: "User" },
   },

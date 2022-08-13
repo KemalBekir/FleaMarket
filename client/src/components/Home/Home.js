@@ -8,6 +8,7 @@ const Home = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
+
   useEffect(() => {
     CatalogService.getTopFive().then((result) => {
       setItems(result);

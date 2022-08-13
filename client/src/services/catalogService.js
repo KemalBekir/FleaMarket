@@ -69,13 +69,13 @@ export async function editItem(itemId,  item , token) {
   }).then(data => data.json());
 }
 
-export async function deleeteItem(itemId, token) {
+export async function deleteItem(itemId, token) {
   return fetch(`${catalogUrl}/${itemId}`, {
     method: 'DELETE',
     headers: {
       "Content-Type": "application/json",
       "X-Authorization": token,
     }
-  }).then(data => data.json());
+  });
 }
 

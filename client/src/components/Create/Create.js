@@ -38,7 +38,6 @@ const Create = () => {
 
   const onSubmit = (values) => {
     const itemData = values;
-
     catalogServices
       .createItem(itemData, user.accessToken)
       .then((result) => {
@@ -91,7 +90,7 @@ const Create = () => {
             ) : null}
             <label>Telephone:</label>
             <Field
-              type="number"
+              type="text"
               name="tel"
               className="create-tel"
               placeholder="Enter your Tel number"

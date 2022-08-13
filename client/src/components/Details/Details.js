@@ -5,6 +5,7 @@ import * as CatalogServices from "../../services/catalogService";
 import { toast } from "react-toastify";
 import Spinner from "../Common/Spinner/Spinner";
 import "./Details.css";
+import { ItemContext } from "../../contexts/itemContext";
 
 const Details = () => {
   const [isLoading, setLoading] = useState(true);
@@ -12,27 +13,27 @@ const Details = () => {
   const { user } = useContext(AuthContext);
   const { itemId } = useParams();
   const navigate = useNavigate();
+  const { removeItem } = useContext(ItemContext);
 
-  const deleteHandler = (e) => {
-    e.preventDefault();
-    if(e.target.textContent == 'Delete'){
-     const confirm = window.confirm(`Are you sure you wante to delete this item ${item.name}`);
-     if(confirm){
-      CatalogServices.deleeteItem(itemId, user.accessToken);
+  const deleteHandler = () => {
+    const confirm = window.confirm(
+      `Are you sure you wante to delete this item ${item.name}`
+    );
+    if (confirm) {
+      CatalogServices.deleteItem(itemId, user.accessToken);
+      navigate("/catalog");
       toast.success(`${item.name} successfully deleted`);
-      navigate('/catalog');
-     } else {
-       navigate(`/details/${itemId}`);
-     }
+    } else {
+      navigate(`/details/${itemId}`);
     }
-  }
+  };
 
   useEffect(() => {
     CatalogServices.getItemById(itemId).then((result) => {
       setItem(result);
       setLoading(false);
     });
-  }, [setItem, setLoading, itemId]);
+  }, [itemId]);
   return (
     <section className="details-section">
       {isLoading ? (
@@ -50,7 +51,7 @@ const Details = () => {
             <h2 className="details-title">{item.name}</h2>
             <ul className="details-info-list">
               <li className="details-info-item">
-              <span className="details-info-accent">Description: </span>
+                <span className="details-info-accent">Description: </span>
                 <p>{item.description}</p>
               </li>
               <li className="details-info-item">
@@ -60,13 +61,22 @@ const Details = () => {
                 </p>
               </li>
               <li className="details-info-item">
-                {item.price  || item.price !== 0 ? (
+                {item.tel ? ( <p>
+                  <span className="details-info-accent">Tel: </span>
+                  {item.tel}
+                </p>) : null }
+               
+              </li>
+              <li className="details-info-item">
+                {item.price || item.price !== 0 ? (
                   <p>
                     <span className="details-info-accent">Price: </span>
                     {item.price}
                   </p>
                 ) : (
-                  <p><span className="details-info-accent">Price: </span>Free</p>
+                  <p>
+                    <span className="details-info-accent">Price: </span>Free
+                  </p>
                 )}
               </li>
             </ul>
@@ -79,7 +89,9 @@ const Details = () => {
               >
                 Edit
               </Link>
-              <button onClick={deleteHandler} className="details-btn-delete">Delete</button>
+              <button onClick={deleteHandler} className="details-btn-delete">
+                Delete
+              </button>
             </div>
           ) : (
             ""

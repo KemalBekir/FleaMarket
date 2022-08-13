@@ -16,7 +16,6 @@ const Profile = () => {
     UserService.getProfile(user.accessToken).then((result) => {
       setProfile(result);
       setLoading(false);
-      console.log(result);
 
     });
   }, [user.accessToken]);

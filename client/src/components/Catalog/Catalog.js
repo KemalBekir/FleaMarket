@@ -10,11 +10,13 @@ const Catalog = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
+  const data = () => catalogService.getAll().then((result) => {
+    setItems(result);
+    setLoading(false);
+  });
+
   useEffect(() => {
-    catalogService.getAll().then((result) => {
-      setItems(result);
-      setLoading(false);
-    });
+    data();
   }, []);
 
   return (
