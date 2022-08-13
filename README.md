@@ -17,6 +17,9 @@ FleaMarket uses:
 - cors - https://www.npmjs.com/package/cors
 - jsonwebtoken - https://jwt.io/
 - nodemon https://nodemon.io/
+- formik https://formik.org/
+- yup https://github.com/jquense/yup
+- react-toastify https://www.npmjs.com/package/react-toastify
 
 ## Installation
 
